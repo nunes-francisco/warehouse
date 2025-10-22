@@ -50,6 +50,7 @@ planning.md
 
 # Ignored file
 project.toml
+.python-version
 
 
 

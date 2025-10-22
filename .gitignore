@@ -44,8 +44,9 @@ cython_debug/
 uploads/
 
 uv.lock
-
-.GEMINI.md
+# Ignored files
+GEMINI.md
+planing.md
 
 
 

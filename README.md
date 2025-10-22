@@ -1,6 +1,8 @@
-# FastAPI Products API
+# Warehouse Products API
 
-Este repositório implementa uma API simples de produtos usando FastAPI + SQLAlchemy (async).
+![](/Users/francisconunes/Projects/warehouse/assets/capa.png)
+
+Este repositório implementa uma API simples de produtos usando FastAPI + SQLAlchemy (async) e Pydantic.
 
 ## Visão geral da arquitetura
 

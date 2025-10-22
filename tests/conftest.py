@@ -35,6 +35,7 @@ async def setup_database():
 
 @pytest.fixture
 def app() -> FastAPI:
+    """ Test FastAPI application with overridden dependencies. """
     main_app.dependency_overrides[get_session] = override_get_session
     return main_app
 

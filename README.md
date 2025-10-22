@@ -19,32 +19,32 @@ Este repositório implementa uma API simples de produtos usando FastAPI + SQLAlc
 
 A base da URL para todos os endpoints é `/api/v1/products`.
 
-| Método | Rota | Descrição | Payload (Corpo) | Resposta |
-| --- | --- | --- | --- | --- |
-| POST | `/` | Cria um novo produto. | `ProductCreate` | `Product` |
-| GET | `/` | Retorna uma lista de produtos. | - | `List[Product]` |
-| GET | `/{product_id}` | Retorna um produto pelo ID. | - | `Product` |
-| PATCH | `/{product_id}` | Atualiza um produto pelo ID. | `ProductUpdate` | `Product` |
-| DELETE | `/{product_id}` | Deleta um produto pelo ID. | - | `Product` |
-| GET | `/search/` | Busca produtos pelo nome. | - | `List[Product]` |
+| Método | Rota              | Descrição                    | Payload (Corpo)   | Resposta          |
+| ------- | ----------------- | ------------------------------ | ----------------- | ----------------- |
+| POST    | `/`             | Cria um novo produto.          | `ProductCreate` | `Product`       |
+| GET     | `/`             | Retorna uma lista de produtos. | -                 | `List[Product]` |
+| GET     | `/{product_id}` | Retorna um produto pelo ID.    | -                 | `Product`       |
+| PATCH   | `/{product_id}` | Atualiza um produto pelo ID.   | `ProductUpdate` | `Product`       |
+| DELETE  | `/{product_id}` | Deleta um produto pelo ID.     | -                 | `Product`       |
+| GET     | `/search/`      | Busca produtos pelo nome.      | -                 | `List[Product]` |
 
 ### Schemas
 
--   **ProductCreate**:
-    -   `name: str`
-    -   `description: str`
-    -   `price: float`
--   **ProductUpdate**:
-    -   `name: Optional[str]`
-    -   `description: Optional[str]`
-    -   `price: Optional[float]`
--   **Product**:
-    -   `id: uuid.UUID`
-    -   `name: str`
-    -   `description: str`
-    -   `price: float`
-    -   `created_at: datetime`
-    -   `updated_at: datetime`
+- **ProductCreate**:
+  - `name: str`
+  - `description: str`
+  - `price: float`
+- **ProductUpdate**:
+  - `name: Optional[str]`
+  - `description: Optional[str]`
+  - `price: Optional[float]`
+- **Product**:
+  - `id: uuid.UUID`
+  - `name: str`
+  - `description: str`
+  - `price: float`
+  - `created_at: datetime`
+  - `updated_at: datetime`
 
 ## Como executar (dev)
 
@@ -68,8 +68,9 @@ pip install -r requirements.txt
 ```
 
 Notas importantes:
+
 - Se preferir `python` mapeado para outra versão, use o caminho completo do binário (ex.: `/usr/local/bin/python3`).
-- O projeto lê `DATABASE_URL` via `pydantic-settings` em `src/core/settings.py`. Para rodar contra Postgres configure `.env` com:
+- O projeto lê `DATABASE_URL` via `pydantic-settings` em `src/core/settings.py`. Para rodar com Postgres configure `.env` com:
 
 ```env
 DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/dbname

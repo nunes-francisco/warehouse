@@ -8,5 +8,5 @@ app.include_router(products.router, prefix="/api/v1/products", tags=["products"]
 
 @app.get("/")
 def read_root():
-    """ Root endpoint returning a welcome message. """
+    """Root endpoint returning a welcome message."""
     return {"message": "Welcome to the Products API"}

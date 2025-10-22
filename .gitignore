@@ -49,7 +49,7 @@ GEMINI.md
 planning.md
 
 # Ignored file
-project.toml
+pyproject.toml
 .python-version
 
 

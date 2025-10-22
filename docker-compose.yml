@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: products_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: products_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  app:
+    build: .
+    container_name: fastapi_products_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://user:password@db:5432/products_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=products_db
+    entrypoint: ["/app/entrypoint.sh"]
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  postgres_data:

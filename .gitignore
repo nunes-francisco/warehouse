@@ -1,0 +1,47 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.ruff_cache/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+# VSCode settings
+.vscode/
+# Environment variables
+.env
+.env.*
+# Logs
+logs/
+*.log
+# Database files
+*.sqlite3
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+# Mypy cache
+.mypy_cache/
+.dmypy.json
+# Pyre type checker
+.pyre/
+# Celery beat schedule file
+celerybeat-schedule
+# Sphinx documentation build
+docs/_build/
+# Pytest cache
+.pytest_cache/
+# Cython debug symbols
+cython_debug/
+# FastAPI uploads
+uploads/
+
+uv.lock
+

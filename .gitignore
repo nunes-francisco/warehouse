@@ -48,5 +48,8 @@ uv.lock
 GEMINI.md
 planning.md
 
+# Ignored file
+project.toml
+
 
 

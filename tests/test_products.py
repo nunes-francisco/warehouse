@@ -9,9 +9,9 @@ from starlette.status import (
 from src.domain.models import Product
 from src.schemas.product import ProductCreate
 
-
 @pytest.mark.asyncio
 async def test_create_product(client: AsyncClient, app: FastAPI):
+    """Testa a criação de um novo produto."""
     product = ProductCreate(name="Test Product", price=10.0)
     response = await client.post(
         app.url_path_for("create_product"), json=product.model_dump()
@@ -24,6 +24,7 @@ async def test_create_product(client: AsyncClient, app: FastAPI):
 
 @pytest.mark.asyncio
 async def test_get_products(client: AsyncClient, app: FastAPI, test_product: Product):
+    """Testa a busca por todos os produtos."""
     response = await client.get(app.url_path_for("read_products"))
     assert response.status_code == HTTP_200_OK
     data = response.json()
@@ -33,6 +34,7 @@ async def test_get_products(client: AsyncClient, app: FastAPI, test_product: Pro
 
 @pytest.mark.asyncio
 async def test_get_product(client: AsyncClient, app: FastAPI, test_product: Product):
+    """Testa a busca por um único produto pelo seu ID."""
     response = await client.get(
         app.url_path_for("read_product", product_id=str(test_product.id))
     )
@@ -43,6 +45,7 @@ async def test_get_product(client: AsyncClient, app: FastAPI, test_product: Prod
 
 @pytest.mark.asyncio
 async def test_get_product_not_found(client: AsyncClient, app: FastAPI):
+    """Testa a busca por um produto inexistente."""
     import uuid
 
     response = await client.get(
@@ -53,6 +56,7 @@ async def test_get_product_not_found(client: AsyncClient, app: FastAPI):
 
 @pytest.mark.asyncio
 async def test_update_product(client: AsyncClient, app: FastAPI, test_product: Product):
+    """Testa a atualização de um produto existente."""
     updated_product = {"name": "Updated Test Product"}
     response = await client.patch(
         app.url_path_for("update_product", product_id=str(test_product.id)),
@@ -65,6 +69,7 @@ async def test_update_product(client: AsyncClient, app: FastAPI, test_product: P
 
 @pytest.mark.asyncio
 async def test_delete_product(client: AsyncClient, app: FastAPI, test_product: Product):
+    """Testa a exclusão de um produto."""
     response = await client.delete(
         app.url_path_for("delete_product", product_id=str(test_product.id))
     )

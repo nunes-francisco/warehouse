@@ -1,3 +1,5 @@
+"""Script para popular o banco de dados com dados de exemplo."""
+
 import asyncio
 from faker import Faker
 from src.core.database import async_session
@@ -8,7 +10,7 @@ fake = Faker()
 
 
 async def seed_data():
-    """ Seed the database with sample product data. """
+    """Popula o banco de dados com dados de produtos de exemplo."""
     async with async_session() as session:  # type: AsyncSession
         products = []
         for _ in range(100):

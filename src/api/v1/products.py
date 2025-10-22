@@ -1,3 +1,5 @@
+"""Define os endpoints da API para a gestão de produtos (versão 1)."""
+
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,7 +13,7 @@ router = APIRouter()
 
 
 def get_product_service(session: AsyncSession = Depends(get_session)) -> ProductService:
-    """ Retorna uma instância de ProductService com o repositório injetado. """
+    """Retorna uma instância de ProductService com o repositório injetado."""
     product_repository = ProductRepository(session)
     return ProductService(product_repository)
 
@@ -20,7 +22,7 @@ def get_product_service(session: AsyncSession = Depends(get_session)) -> Product
 async def create_product(
     product: ProductCreate, service: ProductService = Depends(get_product_service)
 ):
-    """ Cria um novo produto. E retorna o produto criado. """
+    """Cria um novo produto. E retorna o produto criado."""
     return await service.create_product(product=product)
 
 
@@ -30,7 +32,7 @@ async def read_products(
     limit: int = 100,
     service: ProductService = Depends(get_product_service),
 ):
-    """ Retorna uma lista de produtos. """
+    """Retorna uma lista de produtos."""
     return await service.get_products(skip=skip, limit=limit)
 
 
@@ -38,7 +40,7 @@ async def read_products(
 async def read_product(
     product_id: uuid.UUID, service: ProductService = Depends(get_product_service)
 ):
-    """ Retorna um produto pelo ID. """
+    """Retorna um produto pelo ID."""
     db_product = await service.get_product(product_id=product_id)
     if db_product is None:
         raise HTTPException(status_code=404, detail="Product not found")
@@ -51,7 +53,7 @@ async def update_product(
     product: ProductUpdate,
     service: ProductService = Depends(get_product_service),
 ):
-    """ Atualiza um produto pelo ID. """
+    """Atualiza um produto pelo ID."""
     db_product = await service.update_product(product_id=product_id, product=product)
     if db_product is None:
         raise HTTPException(status_code=404, detail="Product not found")
@@ -62,7 +64,7 @@ async def update_product(
 async def delete_product(
     product_id: uuid.UUID, service: ProductService = Depends(get_product_service)
 ):
-    """ Deleta um produto pelo ID. """
+    """Deleta um produto pelo ID."""
     db_product = await service.delete_product(product_id=product_id)
     if db_product is None:
         raise HTTPException(status_code=404, detail="Product not found")

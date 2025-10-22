@@ -1,3 +1,5 @@
+"""Define os modelos de domínio para a aplicação."""
+
 import uuid
 from sqlalchemy import Column, String, Numeric, Boolean, DateTime, Index
 from sqlalchemy.dialects.postgresql import UUID
@@ -8,7 +10,8 @@ Base = declarative_base()
 
 
 class Product(Base):
-    """ Represents a product in the database. """
+    """Representa um produto no banco de dados."""
+
     __tablename__ = "products"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
